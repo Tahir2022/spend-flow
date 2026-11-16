@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Sergoe UI", Roboto, sans-serif;
+}
+
+:root {
+    --bg: #f0f2f5;
+    --surface: #ffffff;
+    --text-secondary:#6b7280; 
+}

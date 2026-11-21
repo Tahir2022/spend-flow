@@ -327,7 +327,7 @@ body {
     border-radius: 10px;
 }
 
-.expenses-item {
+.expense-item {
     background: var(--bg);
     padding: 14px 16px;
     border-radius: 12px;
@@ -340,12 +340,12 @@ body {
     cursor: default;
 }
 
-.expenses-item:hover {
+.expense-item:hover {
     border-color: var(--accent);
     transform: translateX(3px);
 }
 
-.expenses-item .expense-info {
+.expense-item .expense-info {
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -353,7 +353,7 @@ body {
     min-width: 0;
 }
 
-.expenses-item .expense-info .expense-meta {
+.expense-item .expense-info .expense-meta {
     font-size: 12px;
     color: var(--text-secondary);
     display: flex;

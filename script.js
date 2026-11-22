@@ -92,6 +92,25 @@ function renderList() {
                         <span class = "category-badge">${t.category}</span>
                         <span>${formatDate(t.date)}</span>
                         <span style = "text-transform:capitalize;>${t.type}</span>;
-        `
+                    </div>
+                </div>
+                <div class = "expense-amount ${amountClass}">${sign}$${t.amount.toFixed(2)}</div>
+                <div class = "expense-actions">
+                    <button class = "edit-btn" data-id="${t.id}"><i class="fas fa-pen"></i></button>
+                    <button class = "delete-btn" data-id="${t.id}"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        `;
+    });
+
+    //Event Listeners for edit-delete
+    expensesList.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.dataset.id;
+            if (confirm('Delete this transactions?')) {
+                transactions = transactions.filter()
+            }
+        })
     })
 }

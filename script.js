@@ -109,7 +109,30 @@ function renderList() {
             e.stopPropagation();
             const id = btn.dataset.id;
             if (confirm('Delete this transactions?')) {
-                transactions = transactions.filter()
+                transactions = transactions.filter(t => t.id !== id);
+                saveData();
+                if (editingId === id) editingId = null;
+                renderAll();
+            }
+        });
+    });
+
+    expensesList.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.dataset.id;
+            const t = transactions.find(tr => tr.id === id);
+            if (t) {
+                editingId = id;
+                descInput.value = t.description; 
+                amountInput.value = t.amount;
+                categorySelect.value = t.category;
+                // set radio
+                document.querySelectorAll('input[name="type"]').forEach(r => {
+                    r.checked = r.value === t.type;
+                });
+                addBtn.innerHTML = '<i class="fas fa-save></i> Update';
+                addBtn.style.background = 'var(--warning)';
             }
         })
     })

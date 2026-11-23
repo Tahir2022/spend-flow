@@ -133,7 +133,44 @@ function renderList() {
                 });
                 addBtn.innerHTML = '<i class="fas fa-save></i> Update';
                 addBtn.style.background = 'var(--warning)';
+                //scroll to form
+                document.querySelector('.add-form').scrollIntoView({behavior: 'smooth'});
             }
+        });
+    });
+}
+
+function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
+}
+
+//---------Chart------------
+function renderChart() {
+    const ctx = document.getElementById('categoryChart').getContext('2d');
+    // agregation of expenses by category
+    const expenses = transactions.filter(t => t.type === 'expense');
+    const categoryMap = {};
+    expenses.forEach(t => {
+        categoryMap[t.category] = (categoryMap[t.category] || 0) + t.amount;
+    });
+
+    const labels = Object.keys(categoryMap);
+    const data = Object.values(categoryMap);
+    const colors = [
+        '#6366f1', '#10b981', '#ef4444', '#8b5cf6', '#f59e0b',
+        '#ec4899', '#14b8a6', '#f97316', '#6b7280'
+    ];
+
+    if (chartInstance) chartInstance.destroy();
+
+    if (labels.length === 0) {
+        chartInstance = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['No Data'],
+                datasets: [{data: [1], backgroundColor: ['#e5e7eb']}]
+            },
         })
-    })
+    }
 }
